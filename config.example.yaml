@@ -1,0 +1,61 @@
+port: 8080
+redis_url: "redis://localhost:6379"
+otel_endpoint: "localhost:4317"
+
+cache:
+  enabled: true
+  ttl_seconds: 3600
+
+providers:
+  # Local Qwen 2.5 via Ollama (OpenAI-compatible API)
+  - name: qwen-local
+    base_url: "http://localhost:11434/v1"
+    model: "qwen2.5:7b"
+    tier: cheap
+    rate_limit:
+      requests_per_minute: 1000
+
+  # Gemini via OpenAI-compatible endpoint
+  - name: gemini
+    base_url: "https://generativelanguage.googleapis.com/v1beta/openai"
+    api_key: "${GEMINI_API_KEY}"
+    model: "gemini-2.0-flash"
+    tier: mid
+    rate_limit:
+      requests_per_minute: 500
+
+  # OpenAI GPT-4o
+  - name: openai
+    base_url: "https://api.openai.com/v1"
+    api_key: "${OPENAI_API_KEY}"
+    model: "gpt-4o"
+    tier: frontier
+    rate_limit:
+      requests_per_minute: 100
+
+# Keywords checked frontier-first: if "debug" and "format" both appear,
+# frontier wins. This is intentional — err toward quality.
+routing:
+  default_tier: cheap
+  complexity_keywords:
+    frontier:
+      - "architect"
+      - "debug"
+      - "plan"
+      - "design"
+      - "analyze"
+      - "refactor"
+      - "security"
+      - "performance"
+    mid:
+      - "summarize"
+      - "explain"
+      - "compare"
+      - "review"
+      - "describe"
+    cheap:
+      - "format"
+      - "typo"
+      - "translate"
+      - "convert"
+      - "list"
