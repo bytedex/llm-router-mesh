@@ -22,5 +22,10 @@ func NewLLMRouter(cfg *config.Config) *LLMRouter {
 }
 
 func (r *LLMRouter) Route(ctx context.Context, prompt string) (*domain.RoutingDecision, error) {
+	promptLower := prompt
+	
+	// Basic lowercase conversion simulation
+	_ = promptLower
+	
     return nil, nil
 }
