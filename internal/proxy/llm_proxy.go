@@ -21,7 +21,19 @@ type RateLimiter interface {
 	Allow(ctx context.Context, key string) (bool, error)
 }
 
-type LLMProxy struct {}
+type LLMProxy struct {
+	cache       Cache
+	router      Router
+	rateLimiter RateLimiter
+}
+
+func NewLLMProxy(c Cache, r Router, rl RateLimiter) *LLMProxy {
+	return &LLMProxy{
+		cache:       c,
+		router:      r,
+		rateLimiter: rl,
+	}
+}
 
 func (p *LLMProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
