@@ -37,7 +37,14 @@ func NewLLMRouter(cfg *config.Config) *LLMRouter {
 // Route determines the optimal downstream LLM target based on keyword complexity matching.
 // Tiers are checked in priority order (frontier -> mid -> cheap) so the most capable tier
 // wins when a prompt matches keywords from multiple tiers.
-func (r *LLMRouter) Route(_ context.Context, prompt string) (*domain.RoutingDecision, error) {
+func (r *LLMRouter) Route(ctx context.Context, prompt string) (*domain.RoutingDecision, error) {
+	if prompt == "" {
+		return &domain.RoutingDecision{
+			Tier:      "basic",
+			Providers: r.providers["basic"],
+		}, nil
+	}
+	
 	lower := strings.ToLower(prompt)
 
 	for _, tier := range []string{"frontier", "mid", "cheap"} {
