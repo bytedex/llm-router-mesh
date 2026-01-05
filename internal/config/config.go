@@ -29,6 +29,7 @@ type ProviderConfig struct {
 	APIKey    string          `yaml:"api_key"`
 	Model     string          `yaml:"model"`
 	Tier      string          `yaml:"tier"`
+	Timeout   int             `yaml:"timeout_ms"`
 	RateLimit RateLimitConfig `yaml:"rate_limit"`
 }
 
