@@ -90,6 +90,6 @@ func (c *RedisCache) Close() error {
 
 type NoopCache struct{}
 
-func (NoopCache) EnsureIndex(_ context.Context) error { return nil }
+func (NoopCache) EnsureIndex(_ context.Context) error                                { return nil }
 func (NoopCache) GetSemantic(_ context.Context, _ []byte, _ float32) ([]byte, error) { return nil, nil }
-func (NoopCache) SetSemantic(_ context.Context, _ string, _ []byte, _ []byte) error { return nil }
+func (NoopCache) SetSemantic(_ context.Context, _ string, _ []byte, _ []byte) error  { return nil }

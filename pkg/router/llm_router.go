@@ -44,7 +44,7 @@ func (r *LLMRouter) Route(ctx context.Context, prompt string) (*domain.RoutingDe
 			Providers: r.providers["basic"],
 		}, nil
 	}
-	
+
 	lower := strings.ToLower(prompt)
 
 	for _, tier := range []string{"frontier", "mid", "cheap"} {
@@ -72,6 +72,6 @@ func (r *LLMRouter) Route(ctx context.Context, prompt string) (*domain.RoutingDe
 	}
 	return &domain.RoutingDecision{
 		Providers: tierProviders,
-		Reason:   "no keywords matched, using default tier",
+		Reason:    "no keywords matched, using default tier",
 	}, nil
 }

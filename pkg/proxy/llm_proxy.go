@@ -183,7 +183,7 @@ func (p *LLMProxy) forward(ctx context.Context, w http.ResponseWriter, body []by
 			io.Copy(w, resp.Body)
 			return nil
 		}
-		
+
 		buf := make([]byte, 4096)
 		for {
 			n, err := resp.Body.Read(buf)
