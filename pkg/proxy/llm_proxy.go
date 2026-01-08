@@ -10,8 +10,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/arnabdutta/llm-router-mesh/internal/config"
-	"github.com/arnabdutta/llm-router-mesh/internal/domain"
+	"github.com/arnabdutta/llm-router-mesh/pkg/config"
+	"github.com/arnabdutta/llm-router-mesh/pkg/domain"
 	"github.com/sony/gobreaker"
 )
 

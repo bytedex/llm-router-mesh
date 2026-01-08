@@ -11,11 +11,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/arnabdutta/llm-router-mesh/internal/cache"
-	"github.com/arnabdutta/llm-router-mesh/internal/config"
-	"github.com/arnabdutta/llm-router-mesh/internal/proxy"
-	"github.com/arnabdutta/llm-router-mesh/internal/router"
-	"github.com/arnabdutta/llm-router-mesh/internal/telemetry"
+	"github.com/arnabdutta/llm-router-mesh/pkg/cache"
+	"github.com/arnabdutta/llm-router-mesh/pkg/config"
+	"github.com/arnabdutta/llm-router-mesh/pkg/proxy"
+	"github.com/arnabdutta/llm-router-mesh/pkg/router"
+	"github.com/arnabdutta/llm-router-mesh/pkg/telemetry"
 )
 
 func main() {

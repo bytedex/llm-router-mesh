@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/arnabdutta/llm-router-mesh/internal/config"
-	"github.com/arnabdutta/llm-router-mesh/internal/domain"
+	"github.com/arnabdutta/llm-router-mesh/pkg/config"
+	"github.com/arnabdutta/llm-router-mesh/pkg/domain"
 )
 
 // LLMRouter inspects LLM prompts and decides which model should handle it based on complexity
@@ -40,7 +40,7 @@ func NewLLMRouter(cfg *config.Config) *LLMRouter {
 func (r *LLMRouter) Route(ctx context.Context, prompt string) (*domain.RoutingDecision, error) {
 	if prompt == "" {
 		return &domain.RoutingDecision{
-			Tier:      "basic",
+			Reason:    "basic",
 			Providers: r.providers["basic"],
 		}, nil
 	}
